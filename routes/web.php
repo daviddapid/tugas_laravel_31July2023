@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\AboutController;
 use App\Http\Controllers\admin\ContactController as AdminContactController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\admin\SiswaController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\client\AboutController;
+use App\Http\Controllers\client\ContactController;
+use App\Http\Controllers\client\HomeController;
+use App\Http\Controllers\client\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
