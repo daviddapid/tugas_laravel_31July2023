@@ -154,9 +154,6 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          @if (session('success'))
-            toastr()->success();
-          @endif
           @yield('content')
         </div>
         <!-- /.container-fluid -->
@@ -222,7 +219,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"
     integrity="sha512-8QFTrG0oeOiyWo/VM9Y8kgxdlCryqhIxVeRpWSezdRRAvarxVtwLnGroJgnVW9/XBRduxO/z1GblzPrMQoeuew=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    $('.dropify').dropify({
+      tpl: {
+        message: '<div class="dropify-message"><span class="file-icon" /> <p></p></div>',
+      }
+    });
+  </script>
   @yield('scripts')
+  @stack('scripts-stack')
 
   <!-- Page level custom scripts -->
   <script src="{{ asset('admin_assets/js/demo/chart-area-demo.js') }}"></script>

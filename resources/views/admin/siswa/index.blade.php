@@ -47,7 +47,7 @@
               <tr>
                 <td style="vertical-align: middle">{{ $i + 1 }}</td>
                 <td style="white-space: nowrap;vertical-align: middle">{{ $s->name }}</td>
-                <td style="vertical-align: middle;">{{ $s->about }}</td>
+                <td style="vertical-align: middle;">{{ Str::substr($s->about, 0, 50) }}</td>
                 <td style="width: 100px;"><img class="w-100" src="{{ asset('storage/' . $s->photo) }}" alt="">
                 </td>
                 <td style="white-space: nowrap; vertical-align: middle;width: 19px;">

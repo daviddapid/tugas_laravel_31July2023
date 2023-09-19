@@ -23,8 +23,20 @@ class SiswaController extends Controller
 
     public function store(Request $request)
     {
-        Siswa::_store($request);
+        $request->validate(
+            [
+                'name' => 'required|min:3|max:50',
+                'about' => 'required',
+                'photo' => 'required|image',
+            ],
+            [
+                'required' => 'kolom :attribute harus diisi',
+                'min' => 'kolom :attribute minimal :min karakter',
+                'max' => 'kolom :attribute maximal :max karakter',
+            ]
+        );
 
+        Siswa::_store($request);
         return back()->with('success', 'Sukses menambahkan data baru');
     }
 
