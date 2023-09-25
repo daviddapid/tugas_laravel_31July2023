@@ -43,7 +43,7 @@ class ProjectController extends Controller
         $p->photo = $request->file('photo')->storeAs('project', $filename);
         $p->save();
 
-        return back()->with('success', 'Sukses menambah data');
+        return redirect()->route('admin.project.index')->with('success', 'Sukses menambah data');
     }
 
     public function show($id)
@@ -83,7 +83,7 @@ class ProjectController extends Controller
         }
         $project->save();
 
-        return back()->with('success', 'Sukses menambah data');
+        return redirect()->route('admin.project.index')->with('success', 'Sukses menambah data');
     }
 
     public function destroy(Project $project)
