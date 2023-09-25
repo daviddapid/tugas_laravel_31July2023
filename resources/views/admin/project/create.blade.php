@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('content')
-  <h3>Master Data Project</h3>
+  <h3>Create project for: <span class="text-primary fw-bold">{{ $siswa->name }}</span></h3>
   <div class="col-lg-8 ps-0 mt-4">
     <div class="card shadow-sm">
       <div class="card-header">
@@ -9,24 +9,27 @@
       <div class="card-body">
         <form action="{{ route('admin.project.store') }}" method="post" id="form-store" enctype="multipart/form-data">
           @csrf
+          <input type="hidden" value="{{ $siswa->id }}" name="siswa_id">
           <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" name="project_name" id="name" class="form-control">
+            <input type="text" name="project_name" id="name" value="{{ old('project_name') }}"
+              class="form-control @error('project_name') is-invalid @enderror">
+            @error('project_name')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
           </div>
           <div class="mb-3">
             <label for="date" class="form-label">Date</label>
-            <input type="date" name="project_date" id="date" class="form-control">
+            <input type="date" name="project_date" id="date" value="{{ old('project_date') }}"
+              class="form-control  @error('project_date') is-invalid @enderror">
+            @error('project_date')
+              <div class="invalid-feedback">
+                {{ $message }}
+              </div>
+            @enderror
           </div>
-          <div class="mb-3">
-            <label for="date" class="form-label">Date</label>
-            {{-- <input type="date" name="date" id="date" class="form-control"> --}}
-            <select name="siswa_id" id="siswa_id" class="form-control">
-              @foreach ($siswas as $s)
-                <option value="{{ $s->id }}">{{ $s->name }}</option>
-              @endforeach
-            </select>
-          </div>
-
           <div class="mb-3">
             <label for="photo" class="form-label">Photo</label>
             <input type="file" class="dropify" data-allowed-file-extensions="jpg jpeg png webp" name="photo"

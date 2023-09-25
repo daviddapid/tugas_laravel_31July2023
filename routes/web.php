@@ -30,6 +30,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('/siswa', SiswaController::class);
+
     Route::resource('/project', AdminProjectController::class);
+    Route::get('/project/my-create/{siswa}', [AdminProjectController::class, 'myCreate'])->name('project.myCreate');
+
     Route::resource('/contact', AdminContactController::class);
 });

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     use HasFactory;
+
+    function siswa()
+    {
+        return $this->belongsTo(Siswa::class);
+    }
 }

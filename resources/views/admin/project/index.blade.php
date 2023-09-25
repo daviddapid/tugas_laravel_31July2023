@@ -8,13 +8,26 @@
   <script>
     $(document).ready(function() {
       $('#dataTable').DataTable();
-
     });
 
-    function handleDelete(url) {
-      console.log(url);
-      $('#form-delete').attr('action', url);
+    function show(url) {
+      $.get(url, function(data) {
+        $("#wrapper-projects").html(data);
+        $('#title-card-right').text('Data Projects');
+      });
     }
+
+    // function create(url, name) {
+    //   $.get(url, function(data) {
+    //     $("#wrapper-projects").html(data);
+    //     $('#title-card-right').text('Create Projects for : "' + name + '"');
+    //     $('.dropify').dropify({
+    //       tpl: {
+    //         message: '<div class="dropify-message"><span class="file-icon" /> <p></p></div>',
+    //       }
+    //     });
+    //   });
+    // }
   </script>
 @endsection
 @section('content')
@@ -25,12 +38,6 @@
       <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
           <h6 class="m-0 font-weight-bold text-primary">Data Siswa</h6>
-          {{-- <a href="{{ route('admin.project.create') }}" class="btn btn-success btn-icon-split">
-            <span class="icon text-white-50">
-              <i class="fas fa-plus"></i>
-            </span>
-            <span class="text">tambah data</span>
-          </a> --}}
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -51,7 +58,7 @@
                       <button onclick="show('{{ route('admin.project.show', $s->id) }}')" class="btn btn-info btn-circle">
                         <i class="fas fa-folder-open"></i>
                       </button>
-                      <a href="{{ route('admin.project.edit', 1) }}" class="btn btn-success btn-circle">
+                      <a class="btn btn-success btn-circle" href="{{ route('admin.project.myCreate', $s->id) }}">
                         <i class="fas fa-plus"></i>
                       </a>
                       {{-- <button onclick="handleDelete('{{ route('admin.project.destroy', 1) }}')"
@@ -62,42 +69,6 @@
                   </tr>
                 @endforeach
               </tbody>
-              @push('scripts-stack')
-                <script>
-                  function show(url) {
-                    // console.log(url);
-                    $.get(url, function(data) {
-                      if (data.length > 0) {
-                        $("#wrapper-projects").empty();
-                        data.forEach(p => {
-                          $("#wrapper-projects").append(
-                            `
-                            <div class="col-lg-6">
-                              <div class="card">
-                                <div class="card-header">${p.project_name}</div>
-                                <div class="card-body">
-                                  <div class="mb-3">
-                                    <h6>Tanggal</h6>
-                                    <h6 class="fw-bold">${p.project_date}</h6>
-                                  </div>
-                                  <div class="mb-3">
-                                    <h6>Photo</h6>
-                                    <img style="width: 100%;" src="{{ asset('storage') }}/${p.photo}" alt="">
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            `
-                          );
-                        });
-                      } else {
-                        $("#wrapper-projects").html('<h1>Data Kosong</h1>')
-                      }
-                      console.log(data.length);
-                    });
-                  }
-                </script>
-              @endpush
             </table>
           </div>
         </div>
@@ -107,13 +78,13 @@
     <div class="col-lg-8">
       <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-          <h6 class="m-0 font-weight-bold text-primary">Data Project</h6>
-          <a href="{{ route('admin.project.create') }}" class="btn btn-success btn-icon-split">
+          <h6 class="m-0 font-weight-bold text-primary" id="title-card-right">Data Project</h6>
+          {{-- <a href="{{ route('admin.project.create') }}" class="btn btn-success btn-icon-split">
             <span class="icon text-white-50">
               <i class="fas fa-plus"></i>
             </span>
             <span class="text">tambah data</span>
-          </a>
+          </a> --}}
         </div>
         <div class="card-body">
           <div class="row" id="wrapper-projects">
