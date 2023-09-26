@@ -16,18 +16,6 @@
         $('#title-card-right').text('Data Projects');
       });
     }
-
-    // function create(url, name) {
-    //   $.get(url, function(data) {
-    //     $("#wrapper-projects").html(data);
-    //     $('#title-card-right').text('Create Projects for : "' + name + '"');
-    //     $('.dropify').dropify({
-    //       tpl: {
-    //         message: '<div class="dropify-message"><span class="file-icon" /> <p></p></div>',
-    //       }
-    //     });
-    //   });
-    // }
   </script>
 @endsection
 @section('content')
