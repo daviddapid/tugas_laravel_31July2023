@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('role:admin')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $siswas = Siswa::all(['id', 'name']);

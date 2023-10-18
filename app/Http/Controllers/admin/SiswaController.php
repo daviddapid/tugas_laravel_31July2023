@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('role:admin')->except(['index', 'show']);
+    }
+
     public function index()
     {
         $siswas = Siswa::all();

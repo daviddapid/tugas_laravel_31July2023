@@ -89,6 +89,13 @@
           <span>Master Contact</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('logout') }}">
+          {{-- <i class="fas fa-fw fa-out"></i> --}}
+          <i class="fas fa-fw fa-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
